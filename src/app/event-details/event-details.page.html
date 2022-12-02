@@ -1,9 +1,16 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>event-details</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="success">
+    <ion-title>{{singleevent.eventName}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" defaultHref="/events"> </ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div class="content">
+    <h3>Event Name: {{singleevent.eventName}}</h3>
+    <p>Event Date: {{singleevent.eventDate}}</p>
+    <p>Event Description: {{singleevent.eventDesc}}</p>
+  </div>
 </ion-content>

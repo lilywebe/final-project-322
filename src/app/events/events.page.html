@@ -1,9 +1,58 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>events</ion-title>
+    <ion-button
+      slot="end"
+      type="expand"
+      expand="block"
+      color="secondary"
+      (click)="addEventAlert()"
+      >add event</ion-button
+    >
+    <ion-button
+      slot="end"
+      type="expand"
+      expand="block"
+      color="secondary"
+      (click)="this.authService.logout()"
+      >logout</ion-button
+    >
+    <!-- <ion-button
+      slot="end"
+      type="expand"
+      expand="block"
+      color="secondary"
+      (click)="loadAllEvents()"
+      >load events</ion-button
+    > -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list lines="none">
+    <ion-item-sliding *ngFor="let event of events">
+      <ion-item
+        routerLink="/event-details/{{event.eventName}}"
+        routerDirection="forward"
+      >
+        <ion-label>{{event.eventName}}</ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="light">
+          <ion-icon
+            slot="icon-only"
+            name="clipboard"
+            (click)="updateEvent(event)"
+          ></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger">
+          <ion-icon
+            slot="icon-only"
+            name="trash"
+            (click)="removeEvent(event)"
+          ></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

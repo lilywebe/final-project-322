@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "events-322": {
+      "hosting": {
+        "app": [
+          "events-322"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "events-322"
+  }
+}
