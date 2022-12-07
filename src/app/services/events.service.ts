@@ -45,12 +45,6 @@ export class EventsService {
 
   async addEvent(eventObj) {
     const user = this.auth.currentUser;
-    //create event object
-    let events = this.event$.getValue();
-    events.push(eventObj);
-    this.event$.next(events);
-    //this.event$.next(eventObj);
-    console.log(this.event$);
     try {
       // Add a new document with a generated id.
       const docRef = await addDoc(collection(this.firestore, 'events'), {
@@ -60,6 +54,7 @@ export class EventsService {
         eventDesc: eventObj.description,
       });
       console.log('Document written with ID: ', docRef.id);
+      await this.getAllEventsByUser();
       return true;
     } catch (e) {
       console.log('upload error', e);
@@ -124,6 +119,7 @@ export class EventsService {
         eventDesc: newData.description,
       });
     });
+    await this.getAllEventsByUser();
   }
 
   async removeEvent(eventName) {
@@ -139,5 +135,6 @@ export class EventsService {
     querySnapshot.forEach(async (docnr) => {
       await deleteDoc(doc(this.firestore, 'events', docnr.id));
     });
+    await this.getAllEventsByUser();
   }
 }
